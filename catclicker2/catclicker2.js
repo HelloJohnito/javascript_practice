@@ -60,16 +60,3 @@ function setClickListenersToName(newElement, clickedCat){
     };
   })(clickedCat));
 }
-
-
-
-//
-// function displayCatInfo(cat){
-//   var displayName = document.querySelector(".cat-name");
-//   var displayCount = document.querySelector(".cat-count");
-//   var displayImg = document.querySelector(".cat-img");
-//
-//   displayName.innerHTML = cats[cat].name;
-//   displayCount.innerHTML = cats[cat].count;
-//   displayImg.setAttribute("src", cats[cat].img);
-// }
