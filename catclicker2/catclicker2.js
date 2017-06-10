@@ -1,5 +1,4 @@
-// create an object of 5 cats with information.
-
+// create an object of 3 cats with information.
 
 var cats = {
   cat1: {
@@ -39,19 +38,19 @@ var displayImg = document.querySelector(".cat-img");
     var name = document.createTextNode(catsList[catIndex]);
     newElement.appendChild(name);
 
-    setClickListeners(newElement, catsList[catIndex]);
+    setClickListenersToName(newElement, catsList[catIndex]);
     body.appendChild(newElement);
   }
 
+  //set a click listener to image.
   displayImg.addEventListener("click", function(){
-    console.log(displayImg.name);
     cats[displayImg.name].clickCount += 1;
     displayCount.innerHTML = cats[displayImg.name].clickCount;
   });
 })();
 
 
-function setClickListeners(newElement, clickedCat){
+function setClickListenersToName(newElement, clickedCat){
   newElement.addEventListener("click", (function(cat){
     return function(){
       displayName.innerHTML = cats[cat].name;
