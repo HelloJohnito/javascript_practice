@@ -25,12 +25,17 @@
     },
 
     addTodoItem: function(todo){
+      todo.id = this.id;
       model.todolist[this.id] = todo;
       this.id+= 1;
       view.renderTodo();
+    },
+
+    deleteTodoItem: function(todo){
+      delete model.todolist[todo.id];
+      view.renderTodo();
     }
   };
-
 
   var view = {
     init: function(){
@@ -43,6 +48,7 @@
         e.preventDefault();
         var todoItem = {item: self.input.value};
         controller.addTodoItem(todoItem);
+        self.input.value = "";
       });
 
       view.renderTodo();
@@ -52,12 +58,23 @@
       var todos = controller.getAllTodos();
       var self = this;
       this.todoList.innerHTML = "";
-      
+
       todos.forEach(function(todo){
         var list = document.createElement("li");
         var text = document.createTextNode(todo.item);
+        var deleteButton = document.createElement("button");
+        deleteButton.innerHTML = "delete";
+
         list.appendChild(text);
+        list.appendChild(deleteButton);
         self.todoList.appendChild(list);
+
+        deleteButton.addEventListener("click", (function(deletingItem){
+          return function(){
+              controller.deleteTodoItem(deletingItem);
+          };
+        })(todo));
+
       });
     }
   };
